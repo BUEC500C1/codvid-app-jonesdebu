@@ -2,11 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
+
 export default function App() {
   return (
     <React.Fragment>
       <View style={styles.container}>
-        <Text>Open up App.js t!</Text>
+        <Text>Hello</Text>
         <MapView
           provider={PROVIDER_GOOGLE}
           style={styles.map}

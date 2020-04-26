@@ -8,6 +8,22 @@ import {Geojson} from 'react-native-maps';
 
 export default class App extends Component {
   constructor(){
+
+    fetch('https://api.covid19api.com/country/united-states/status/confirmed/live?from=2020-04-01T00:00:00Z&to=2020-04-10T00:00:00Z', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+    })
+
+    .then((response) => response.json())
+    .then((response) => {
+      super()
+      global.coords = [parseFloat(response[0].Lat), parseFloat(response[0].Lon)]
+      console.log(coords)
+    });
+
     super();
     global.myPlace = {
   type: 'FeatureCollection',
@@ -17,14 +33,14 @@ export default class App extends Component {
       properties: {},
       geometry: {
         type: 'Point',
-        coordinates: [64.165329, 48.844287],
+        coordinates: [coords[1], coords[0]],// Lon then Lat
       }
     }
   ]
 };
 
   }
-  handlePress = async () => {
+/*handlePress = async () => {
     fetch('https://api.covid19api.com/country/south-africa/status/confirmed/live?from=2020-04-01T00:00:00Z&to=2020-04-10T00:00:00Z', {
       method: 'GET',
       headers: {
@@ -51,13 +67,13 @@ export default class App extends Component {
         ]
       };
 
-      return myPlace
+    return myPlace
 
     })
     .catch((error) => {
       console.error(error);
     });
-  }
+  }*/
 
 
 
@@ -70,7 +86,7 @@ export default class App extends Component {
       <View style={ {paddingTop: 1000, paddingLeft: 50 }}>
 
         <MapView
-        onMapReady = {this.handlePress.bind(this)}
+        //onPress = constructor(
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         >

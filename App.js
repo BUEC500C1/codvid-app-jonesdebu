@@ -23,7 +23,7 @@ export default class App extends Component {
 
     .then((response) => response.json())
     .then((response) => {
-      Alert.alert("Country: " + response[0].Country + " Current confirmed cases: " + response[0].Cases);
+      return Alert.alert(response[0].Lat)
     })
     .catch((error) => {
       console.error(error);

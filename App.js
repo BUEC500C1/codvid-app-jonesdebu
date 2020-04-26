@@ -1,35 +1,70 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 
-export default function App() {
-  return (
-    <React.Fragment>
-      <View style={styles.container}>
-        <Text>Hello</Text>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          initialRegion={{
-             latitude: 37.78825,
-             longitude: -122.4324,
-             latitudeDelta: 0.0922,
-             longitudeDelta: 0.0421,
-           }}
-        />
-      </View>
 
-    </React.Fragment>
-  );
+export default class App extends Component {
+  handlePress = async () => {
+    fetch('https://api.covid19api.com/country/south-africa/status/confirmed/live?from=2020-04-01T00:00:00Z&to=2020-04-10T00:00:00Z', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    /*  body: JSON.stringify({
+        "type": "select",
+        "args": {
+            "columns": [
+              "Country"
+            ],
+        }
+      })*/
+    })
+
+    .then((response) => response.json())
+    .then((response) => {
+      Alert.alert("Country: " + response[0].Country + " Current confirmed cases: " + response[0].Cases);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  render() {
+    return(
+      <View style={ {paddingTop: 50, paddingLeft: 50 }}>
+      <Text> Welcome  </Text>
+      <Text> WIP </Text>
+        <TouchableOpacity onPress={this.handlePress.bind(this)}>
+          <Text style={{ paddingTop: 50, paddingLeft: 50, color: '#FF0000'}}>
+          Press to show data
+          </Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
 }
+
+
+  /*return fetch('api.covid19api.com/live/country/switzerland/status/confirmed');
+            .then((response) => response.json())
+  useEffect(() => {
+    fetch('https://reactnative.dev/movies.json')
+      .then((response) => response.json())
+      .then((json) => setData(json.movies))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);*/
+
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
   map: {
     ...StyleSheet.absoluteFillObject,

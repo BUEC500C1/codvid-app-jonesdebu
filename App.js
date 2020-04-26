@@ -46,18 +46,6 @@ export default class App extends Component {
 }
 
 
-  /*return fetch('api.covid19api.com/live/country/switzerland/status/confirmed');
-            .then((response) => response.json())
-  useEffect(() => {
-    fetch('https://reactnative.dev/movies.json')
-      .then((response) => response.json())
-      .then((json) => setData(json.movies))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);*/
-
-
-
 
 const styles = StyleSheet.create({
   container: {

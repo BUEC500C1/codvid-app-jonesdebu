@@ -11,7 +11,7 @@ Note: If the tunnel fails to run start correctly run `npm start --tunnel`
 
 ### master
 On the master branch is a basic react-native application that displays a google map using react-native-maps.
-![Alt Text](media/demo1.gif)
+![Alt Text](media/demo1.gif = 250x250)
 
 ### COVID-19-API-DATA-DISPLAY
 This branch produces a page with a button (TouchableOpacity) that will open an alert with data from the API.

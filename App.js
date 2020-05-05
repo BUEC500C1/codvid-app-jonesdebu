@@ -8,7 +8,7 @@ import {Geojson} from 'react-native-maps';
 
 export default class App extends Component {
   constructor(){
-
+     global.coords = []
     fetch('https://api.covid19api.com/country/united-states/status/confirmed/live?from=2020-04-01T00:00:00Z&to=2020-04-10T00:00:00Z', {
       method: 'GET',
       headers: {
@@ -19,8 +19,8 @@ export default class App extends Component {
 
     .then((response) => response.json())
     .then((response) => {
-      super()
-      global.coords = [parseFloat(response[0].Lat), parseFloat(response[0].Lon)]
+      //super();
+      coords = [parseFloat(response[0].Lon), parseFloat(response[0].Lat)]
       console.log(coords)
     });
 
@@ -40,42 +40,6 @@ export default class App extends Component {
 };
 
   }
-/*handlePress = async () => {
-    fetch('https://api.covid19api.com/country/south-africa/status/confirmed/live?from=2020-04-01T00:00:00Z&to=2020-04-10T00:00:00Z', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-
-    })
-
-    .then((response) => response.json())
-    .then((response) => {
-      console.log(response[0])
-
-      myPlace = {
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-              type: 'Point',
-              coordinates: [response[0].Lat, response[0].Lon],
-            }
-          }
-        ]
-      };
-
-    return myPlace
-
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }*/
-
-
 
 
   render() {

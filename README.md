@@ -10,3 +10,6 @@ All Branches can be run by using `npm start` in your terminal.
 Note: If the tunnel fails to run start correctly run `npm start --tunnel`
 
 ### Master
+On the master branch is a basic react-native application that displays a google map using react-native-maps.
+![Alt Text](media/demo1.gif)
+###
